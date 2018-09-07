@@ -91,8 +91,8 @@ _output_
 _file.json_ (output from `fastj read`)
 
 ```json
-[{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu", … }
-,{ "id": "specimenB", "sequence": "CGAT…", "date": "2017-05-13", "virus": "flu", … }
+[{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
+,{ "id": "specimenB", "sequence": "CGAT…", "date": "2017-05-13", "virus": "flu" }
 ]
 ```
 
@@ -124,9 +124,8 @@ _file.fastj_ for all examples
 #### `fastj read [file.fastj [file2.fastj […]]]`
 
 ```json
-[{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu", … }
-,{ "id": "specimenB", "sequence": "CGAT…", "date": "2017-05-13", "virus": "flu", … }
-…
+[{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
+,{ "id": "specimenB", "sequence": "CGAT…", "date": "2017-05-13", "virus": "flu" }
 ]
 ```
 
@@ -136,7 +135,6 @@ _file.fastj_ for all examples
     ATCG…
     >flu|2017-05-13|specimenB
     CGAT…
-    …
 
 #### `fastj read --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
@@ -144,7 +142,6 @@ _file.fastj_ for all examples
     ATCG…
     >flu/2017-05-13/specimenB
     CGAT…
-    …
 
 
 ### fastj index
