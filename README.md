@@ -40,13 +40,15 @@ files and to otherwise work with them.
 
 ### fastj write
 
-Writes FASTJ to stdout from FASTA + metadata.
+Writes FASTJ sequences to stdout from FASTA + metadata.
+
+Input is from named files, if given with the input flag, otherwise stdin.
 
 Output is always FASTJ written to stdout.
 
 Examples:
 
-#### `fastj write --sequences file.fasta --delimiter="|" --fields virus date id`
+#### `fastj write --fasta file.fasta --delimiter="|" --fields virus date id`
 
 _file.fasta_
 
@@ -63,7 +65,7 @@ _output_
     CGAT…
 
 
-#### `fastj write --sequences file.fasta --metadata file.tsv`
+#### `fastj write --fasta file.fasta --metadata file.tsv`
 
 _file.fasta_
 
@@ -106,11 +108,17 @@ _output_
 
 ### fastj read
 
-Converts FASTJ files or stdin to another format.
+Converts FASTJ sequences to another format.
 
-Output defaults to JSON.  The top-level JSON value will always be an array,
-even if there is only one sequence record.  Alternatively, vanilla FASTA with
-delimited sequence ids constructed from the FASTJ fields may be output instead.
+Input is from the listed files, if any, otherwise stdin.
+
+Output defaults to JSON.  Supported output formats are:
+
+* `json`: The top-level value will always be an array, even if there is only
+  one sequence record.
+
+* `fasta`: Plain FASTA with delimited sequence ids constructed from the FASTJ
+  fields.
 
 Examples:
 
