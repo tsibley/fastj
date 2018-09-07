@@ -46,7 +46,7 @@ Output is always FASTJ written to stdout.
 
 Examples:
 
-**`fastj write --sequences file.fasta --delimiter="|" --fields virus date id`**
+#### `fastj write --sequences file.fasta --delimiter="|" --fields virus date id`
 
 _file.fasta_
 
@@ -63,7 +63,7 @@ _output_
     CGAT…
 
 
-**`fastj write --sequences file.fasta --metadata file.tsv`**
+#### `fastj write --sequences file.fasta --metadata file.tsv`
 
 _file.fasta_
 
@@ -86,7 +86,7 @@ _output_
     CGAT…
 
 
-**`fastj write --json file.json`**
+#### `fastj write --json file.json`
 
 _file.json_ (output from `fastj read`)
 
@@ -121,7 +121,7 @@ _file.fastj_ for all examples
     >specimenB {"date":"2017-05-13", "virus":"flu"}
     CGAT…
 
-**`fastj read [file.fastj [file2.fastj […]]]`**  
+#### `fastj read [file.fastj [file2.fastj […]]]`
 
 ```json
 [{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu", … }
@@ -130,7 +130,7 @@ _file.fastj_ for all examples
 ]
 ```
 
-**`fastj read --output=fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`**
+#### `fastj read --output=fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu|2017-05-04|specimenA
     ATCG…
@@ -138,7 +138,7 @@ _file.fastj_ for all examples
     CGAT…
     …
 
-**`fastj read --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`**
+#### `fastj read --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu/2017-05-04/specimenA
     ATCG…
