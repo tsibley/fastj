@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+
+# Package build dirs
+/build/
+/dist/
+/fastj.egg-info/
+
+# mypy cache
+/.mypy_cache/
