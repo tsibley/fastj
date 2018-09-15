@@ -154,9 +154,9 @@ _file.fastj_ for all examples
 
 ### fastj index
 
-**Tentative.**
+_Tentative._
 
 
 ### fastj search
 
-**Tentative.**
+_Tentative._
