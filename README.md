@@ -29,18 +29,31 @@ following two FASTJ sequence records are equivalent:
     >seqA {}
     ATCG
 
+As a special-case, records may omit the _id_ by including a blank space or an
+opening curly brace `{` immediately following the `>`:
+
+    > {"date":"2017-05-04", "virus":"flu"}
+    ATCG…
+    >{"date":"2017-05-13", "virus":"flu"}
+    CGAT…
+
+Note, however, that only the first variant (a blank space) conforms with FASTA
+conventions.  `fastj encode`, described below, will only produce this first
+variant.
+
 That's all!
 
 
 ## Command
 
-The command-line program `fastj` provides tools to __read__ and __write__ FASTJ
-files and to otherwise work with them.
+The command-line program `fastj` provides tools to read and write FASTJ files
+and to otherwise work with them.
 
 
-### fastj write
+### fastj from {fasta,json,ndjson}
 
-Writes FASTJ sequences to stdout from FASTA + metadata.
+Writes FASTJ sequences to stdout given FASTA + metadata, a JSON array, or
+newline-delimited JSON.
 
 Input is from named files, if given with the input flag, otherwise stdin.
 
@@ -48,7 +61,7 @@ Output is always FASTJ written to stdout.
 
 Examples:
 
-#### `fastj write --fasta file.fasta --delimiter="|" --fields virus date id`
+#### `fastj from fasta --delimiter="|" --fields virus date id -- file.fasta`
 
 _file.fasta_
 
@@ -65,7 +78,7 @@ _output_
     CGAT…
 
 
-#### `fastj write --fasta file.fasta --metadata file.tsv`
+#### `fastj from fasta --metadata file.tsv -- file.fasta`
 
 _file.fasta_
 
@@ -88,9 +101,9 @@ _output_
     CGAT…
 
 
-#### `fastj write --json file.json`
+#### `fastj from json file.json`
 
-_file.json_ (output from `fastj read`)
+_file.json_ (output from `fastj to json`)
 
 ```json
 [{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
@@ -106,7 +119,7 @@ _output_
     CGAT…
 
 
-### fastj read
+### fastj to {fasta,json,ndjson}
 
 Converts FASTJ sequences to another format.
 
@@ -129,7 +142,7 @@ _file.fastj_ for all examples
     >specimenB {"date":"2017-05-13", "virus":"flu"}
     CGAT…
 
-#### `fastj read [file.fastj [file2.fastj […]]]`
+#### `fastj to json [file.fastj [file2.fastj […]]]`
 
 ```json
 [{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
@@ -137,14 +150,21 @@ _file.fastj_ for all examples
 ]
 ```
 
-#### `fastj read --output=fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`
+#### `fastj to ndjson [file.fastj [file2.fastj […]]]`
+
+```json
+{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
+{ "id": "specimenB", "sequence": "CGAT…", "date": "2017-05-13", "virus": "flu" }
+```
+
+#### `fastj to fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu|2017-05-04|specimenA
     ATCG…
     >flu|2017-05-13|specimenB
     CGAT…
 
-#### `fastj read --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
+#### `fastj to fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu/2017-05-04/specimenA
     ATCG…
