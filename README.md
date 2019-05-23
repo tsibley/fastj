@@ -34,13 +34,14 @@ That's all!
 
 ## Command
 
-The command-line program `fastj` provides tools to __read__ and __write__ FASTJ
-files and to otherwise work with them.
+The command-line program `fastj` provides tools to __encode__ and __decode__
+FASTJ files and to otherwise work with them.
 
 
-### fastj write
+### fastj encode
 
-Writes FASTJ sequences to stdout from FASTA + metadata.
+Converts other formats, such as FASTA with delimited fields in the sequence id
+or FASTA + TSV/CSV, to FASTJ.
 
 Input is from named files, if given with the input flag, otherwise stdin.
 
@@ -48,7 +49,7 @@ Output is always FASTJ written to stdout.
 
 Examples:
 
-#### `fastj write --fasta file.fasta --delimiter="|" --fields virus date id`
+#### `fastj encode --fasta file.fasta --delimiter="|" --fields virus date id`
 
 _file.fasta_
 
@@ -65,7 +66,7 @@ _output_
     CGAT…
 
 
-#### `fastj write --fasta file.fasta --metadata file.tsv`
+#### `fastj encode --fasta file.fasta --metadata file.tsv`
 
 _file.fasta_
 
@@ -88,9 +89,9 @@ _output_
     CGAT…
 
 
-#### `fastj write --json file.json`
+#### `fastj encode --json file.json`
 
-_file.json_ (output from `fastj read`)
+_file.json_ (output from `fastj decode`)
 
 ```json
 [{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
@@ -106,7 +107,7 @@ _output_
     CGAT…
 
 
-### fastj read
+### fastj decode
 
 Converts FASTJ sequences to another format.
 
@@ -129,7 +130,7 @@ _file.fastj_ for all examples
     >specimenB {"date":"2017-05-13", "virus":"flu"}
     CGAT…
 
-#### `fastj read [file.fastj [file2.fastj […]]]`
+#### `fastj decode [file.fastj [file2.fastj […]]]`
 
 ```json
 [{ "id": "specimenA", "sequence": "ATCG…", "date": "2017-05-04", "virus": "flu" }
@@ -137,14 +138,14 @@ _file.fastj_ for all examples
 ]
 ```
 
-#### `fastj read --output=fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`
+#### `fastj decode --output=fasta --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu|2017-05-04|specimenA
     ATCG…
     >flu|2017-05-13|specimenB
     CGAT…
 
-#### `fastj read --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
+#### `fastj decode --output=fasta --delimiter=/ --fields virus date id -- [file.fastj [file2.fastj […]]]`
 
     >flu/2017-05-04/specimenA
     ATCG…
