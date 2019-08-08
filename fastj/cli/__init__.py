@@ -42,7 +42,7 @@ def run(args: List[str]) -> int:
     command = " ".join(args[:2])
     args    = args[2:]
 
-    if command in {"to fasta", "to json"}:
+    if command in {"to fasta", "to json", "to ndjson"}:
         # XXX TODO: use stdin if no args
         # XXX TODO: parse args for --fields, etc
         paths = args
@@ -64,7 +64,7 @@ def run(args: List[str]) -> int:
                             separators = (',', ':')), end = "")
         print("]")
 
-    elif command in {"from fasta", "from json"}:
+    elif command in {"from fasta", "from json", "from ndjson"}:
         # XXX TODO
         ...
 
